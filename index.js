@@ -30,6 +30,11 @@ var blogSchema = new mongoose.Schema({
     title: String,
     hero_image: String,
     body: String,
+    up: Number,
+    // category: {
+    //     tech: boolean,
+    //     echonomics: boolean
+    // },
     created: {
         type: Date,
         default: Date.now
@@ -43,7 +48,7 @@ var Blog = mongoose.model("Blog", blogSchema);
 
 var UserSchema = new mongoose.Schema({
     username: String,
-    rollno: Number,
+    rollNo: Number,
     password: String
 });
 
@@ -75,26 +80,84 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     }
-    res.redirect("/admin");
+    res.redirect("/login");
 };
 
 // -----------------
 // ROUTES
 // -----------------
 
+
+// LANDING
+
 app.get("/", function(req, res) {
     res.send("landing page is working");
 });
-app.get("/login", function(req, res) {
-    res.send("login page is working");
-});
+
+// REGISTER
+
 app.get("/register", function(req, res) {
-    res.send("Register page is working");
+    res.render("register");
 });
+
+app.post("/register", function(req, res) {
+    var newUser = new User({
+        username: req.body.username,
+        rollNo: req.body.rollNo
+    });
+    User.register(newUser, req.body.password, function(err, user) {
+        if (err) {
+            console.log(err);
+            return res.send("error");
+        }
+        passport.authenticate("login")(req, res, function() {
+            console.log("Registered Succesfully");
+            res.redirect("/");
+        })
+    })
+});
+
+//LOGIN
+app.get("/login", function(req, res) {
+    res.render("login");
+});
+
+app.post("/logout", function(req, res) {
+    req.logout();
+    console.log("Logged out Succesfully");
+    res.redirect("/blogs");
+});
+
+app.post("/login", passport.authenticate("local", {
+    successRedirect: "/",
+    faliureRedirect: "/login"
+}), function(req, res) {});
+
+// LOGOUT
 app.get("/logout", function(req, res) {
     res.send("logout page is working");
 });
 
+// NEW BLOG
+
+app.get("/blogs/new", function(req, res) {
+    res.render('newBlog');
+});
+
+app.post("/blogs", function(req, res) {
+    Blog.create({
+        title: req.body.title,
+        hero_image: req.body.image,
+        body: req.body.body
+    }, function(err, newBlog) {
+        if (err) {
+            console.log("Error"),
+                res.redirect('/admin/blogs/new');
+        } else {
+            res.redirect("/blogs/" + newBlog._id);
+        }
+    });
+});
 
 
 
