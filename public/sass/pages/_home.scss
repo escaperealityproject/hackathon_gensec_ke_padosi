@@ -1,0 +1,18 @@
+.section-about {
+    background-color: $color-background-light;
+    padding: 25rem 0;
+    margin-top: -15vh;
+
+    @include respond(tab-port){
+        padding: 20rem 4rem;
+    }
+}
+
+.section-stories{
+    padding: 25rem 0;
+    background-color: $color-background-light;
+    margin-top: -15vh;
+    @include respond(tab-port){
+        padding: 20rem 0;
+}
+}

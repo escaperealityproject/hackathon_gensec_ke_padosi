@@ -1,8 +1,62 @@
-<h1>Sign Up!</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-   <form class="" action="/register" method="post">
-       <input type="text" name="username" placeholder="username">
-       <input type="number" name="rollNo" placeholder="roll Number">
-       <input type="password" name="password" placeholder="password">
-       <button>Sign Up</button>
-</form>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+
+    <%# <link rel="stylesheet" href="css/icon-font.css"> %>
+    <link rel="stylesheet" href="/stylesheets/landing.css">
+    <%# <link rel="shortcut icon" type="image/png" href="img/favicon.png"> %>
+    <title>Society Fair</title>
+</head>
+
+<body>
+    <!-- <div class="header__logo-box"> -->
+    <a href="/">
+        <img src="/images/logo-white.png" alt="Battle Club" class="header__logo">
+    </a>
+    <!-- </div> -->
+    <header class="header">
+        <div class="header__text-box">
+            <h1 class="heading-primary">
+                <span class="heading-primary--main">
+                    LOGIN
+                </span>
+
+                <form class="" action="/register" method="post">
+                    <div class="form__group">
+                        <input type="text" class="form__input" placeholder="UserName" name="username" required>
+                    </div>
+                    <div class="form__group">
+                        <input type="number" class="form__input" placeholder="Roll Number" name="rollNo" required>
+                    </div>
+                    <div class="form__group">
+                        <input type="password" class="form__input" placeholder="Password" name="password" required>
+                    </div>
+                    <div class="form__group">
+
+                        <input type="hidden" name="option[0]" value="0">
+                        <input type="hidden" name="option[1]" value="0">
+                        <input type="hidden" name="option[2]" value="0">
+                        <input type="hidden" name="option[3]" value="0">
+                            Tech
+                        <input type="checkbox" name="option[0]" value="1">
+                            Economics
+                        <input type="checkbox" name="option[1]" value="1">
+                            Cultural
+                        <input type="checkbox" name="option[2]" value="1">
+                            Literary
+                        <input type="checkbox" name="option[3]" value="1">
+                    </div>
+
+                    <div class="form__group"><button class="btn">Submit</button></div>
+                </form>
+        </div>
+    </header>
+
+</body>
+
+</html>

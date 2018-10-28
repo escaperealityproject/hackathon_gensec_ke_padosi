@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+
+    <%# <link rel="stylesheet" href="css/icon-font.css"> %>
+    <link rel="stylesheet" href="/stylesheets/landing.css">
+    <%# <link rel="shortcut icon" type="image/png" href="img/favicon.png"> %>
+    <title>Society Fair</title>
+</head>
+
+<body>
+    <!-- <div class="header__logo-box"> -->
+    <a href="/logout">
+        <img src="/images/logo-white.png" alt="Battle Club" class="header__logo">
+    </a>
+    <!-- </div> -->
+    <header class="header">
+        <!-- <div class="logout">
+            <a href="/logout" class="btn btn--white">
+                LOGIN!
+            </a>
+        </div> -->
+        <div class="header__text-box">
+            <h1 class="heading-primary">
+                <span class="heading-primary--main">
+                    Society fair
+                </span>
+                <span class="heading-primary--sub">
+                    See whats going around
+                </span>
+            </h1>
+        </div>
+    </header>
+    <main>
+        <section class="section-stories">
+
+            <div class="u-center-text u-margin-bottom-big">
+                   <h2 class="heading-secondary">
+                       See whats happening around
+                   </h2>
+               </div>
+
+        <%   var i=0 %>
+        <%    blogs.slice().reverse().forEach(function(blog){ %>
+            <%   var chk=0 %>
+
+        <% if(blog.category.tech==true){ %>
+        <% if(user.tech==true){ %>
+        <%   chk=1   %>
+            <%    }   %>
+            <%    }   %>
+        <% if(blog.category.literary==true){ %>
+        <% if(user.literary==true){ %>
+        <%   chk=1   %>
+            <%    }   %>
+            <%    }   %>
+        <% if(blog.category.economics==true){ %>
+        <% if(user.economics==true){ %>
+        <%   chk=1   %>
+            <%    }   %>
+            <%    }   %>
+
+        <% if(blog.category.cultural==true){ %>
+        <% if(user.cultural==true){ %>
+        <%   chk=1   %>
+            <%    }   %>
+            <%    }   %>
+
+            <% if(chk==0){ %>
+                <%   return   %>
+                <%    }   %>
+        <% if(i%3==0){ %>
+        <div class="row">
+            <%    }   %>
+        <% if(i%3==0){ %>
+        <div class="row">
+            <%    }   %>
+            <div class="col-1-of-3">
+                <div class="feature-box">
+                    <img class="feature-box__image" src="" alt="">
+                    <h3 class="heading-tertiary u-margin-bottom-small">
+                        <%=    blog.title    %>
+                    </h3>
+                    <p class="feature-box__text">
+                        <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus iste perferendis voluptatem quod ex porro, quia culpa totam maiores perspiciatis? -->
+                            <%=    blog.body    %>
+                    </p>
+                </div>
+            </div>
+            <% if((i+1)%3==0){ %>
+                </div>
+            <%    }   %>
+            <%    i=i+1   %>
+        <%    })   %>
+
+
+        <% if((i+1)%3!=0){ %>
+            </div>
+            <%    }   %>
+        </section>
+    </main>
+</body>
+
+</html>
